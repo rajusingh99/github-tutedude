@@ -28,6 +28,11 @@ def submit_data():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 400
 
+# Render To-Do Page
+@app.route('/todo')
+def todo_page():
+    items = list(collection.find())
+    return render_template("todo.html", items=items)
 
 if __name__ == '__main__':
     app.run(debug=True)

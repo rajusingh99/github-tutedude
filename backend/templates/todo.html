@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; }
+    form { margin-bottom: 20px; }
+    input, textarea { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+    button { padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; }
+    button:hover { background: #218838; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 8px 0; background: #f8f9fa; padding: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>📝 To-Do Page</h2>
+
+  {% if message %}
+    <p><strong>{{ message }}</strong></p>
+  {% endif %}
+
+  <form action="/submit" method="POST">
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" required>
+
+    <label for="itemDescription">Item Description:</label>
+    <textarea id="itemDescription" name="itemDescription" required></textarea>
+
+    <button type="submit">Add Item</button>
+  </form>
+
+  <h3>📌 Items List</h3>
+  <ul>
+    {% for item in items %}
+      <li><strong>{{ item.itemName }}</strong>: {{ item.itemDescription }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
